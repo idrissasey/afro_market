@@ -1,0 +1,17 @@
+{
+  "apphosting": {
+    "backendId": "afromarket",
+    "rootDir": "/",
+    "ignore": [
+      "node_modules",
+      ".git",
+      "firebase-debug.log",
+      "firebase-debug.*.log",
+      "functions"
+    ],
+    "engines": {
+      "node": "20.x",
+      "npm": ">=9.6.0"
+    }
+  }
+}
