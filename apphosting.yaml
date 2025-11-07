@@ -6,6 +6,17 @@ runConfig:
   # concurrency: 80
   # cpu: 1
   # memoryMiB: 512
+# Firebase App Hosting build & runtime config
+runtime: nodejs20
+
+build:
+  command: npm install && npm run build
+
+backend:
+  entrypoint: dist/index.js
+
+
+  # Optio
 
 # Environment variables and secrets.
 # env:

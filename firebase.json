@@ -1,6 +1,7 @@
 {
   "apphosting": {
     "backendId": "afromarket",
+    "source": "./",
     "rootDir": "/",
     "ignore": [
       "node_modules",
@@ -13,5 +14,19 @@
       "node": "20.x",
       "npm": ">=9.6.0"
     }
+  },
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
 }
