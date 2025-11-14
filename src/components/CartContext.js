@@ -9,6 +9,20 @@ export const CartProvider = ({ children }) => {
     // Ajouter un produit (ajoute un exemplaire à chaque clic)
     const addToCart = (product) => {
         setCart((prev) => [...prev, product]);
+        const notif = document.createElement('div');
+        notif.textContent = 'Produit ajouté au panier !';
+        notif.style.position = 'fixed';
+        notif.style.top = '20px';
+        notif.style.right = '20px';
+        notif.style.background = '#4BB543';
+        notif.style.color = 'white';
+        notif.style.padding = '10px 20px';
+        notif.style.borderRadius = '5px';
+        notif.style.zIndex = 1000;
+        document.body.appendChild(notif);
+        setTimeout(() => {
+            document.body.removeChild(notif);
+        }, 2000);
     };
 
     // Supprimer complètement un produit (peu importe la quantité)

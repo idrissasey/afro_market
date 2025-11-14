@@ -97,7 +97,9 @@ const BeautePage = () => {
                                     <CardMedia
                                         component="img"
                                         height="200"
-                                        image={product.imageUrl}
+                                        image={product.imageUrl.startsWith('http')
+                                            ? product.imageUrl
+                                            : process.env.PUBLIC_URL + '/' + product.imageUrl}
                                         alt={product.name}
                                         sx={{ objectFit: "cover" }}
                                     />

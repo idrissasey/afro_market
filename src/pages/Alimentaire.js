@@ -98,14 +98,17 @@ const AlimentairePage = () => {
                                     <CardMedia
                                         component="img"
                                         height="200"
-                                        image={`/${product.imageUrl}`}
+                                        image={product.imageUrl.startsWith('http')
+                                            ? product.imageUrl
+                                            : process.env.PUBLIC_URL + '/' + product.imageUrl}
                                         alt={product.name}
                                         sx={{ objectFit: "cover" }}
+                                        onError={e => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + '/images/banner.png'  ; }}
                                     />
                                     <CardContent>
                                         <Typography variant="h6">{product.name}</Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {product.description} {"./"+product.imageUrl}
+                                            {product.description}
                                         </Typography>
                                         <Typography color="orange" sx={{ mt: 1 }}>
                                             {product.price.toFixed(2)} €

@@ -17,11 +17,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useCart } from './CartContext';
+import {useNavigate} from "react-router-dom";
 
 const CartDrawer = () => {
     const [open, setOpen] = useState(false);
     const { cart, addToCart, decreaseQuantity, removeFromCart, clearCart } = useCart();
-
+    const navigate = useNavigate();
     const toggleDrawer = () => setOpen(!open);
 
     // Regrouper les produits par nom
@@ -58,7 +59,9 @@ const CartDrawer = () => {
                                         <ListItemAvatar>
                                             <Avatar
                                                 variant="square"
-                                                src={item.image}
+                                                src={item.imageUrl.startsWith('http')
+                                                ? item.imageUrl
+                                                : process.env.PUBLIC_URL + '/' + item.imageUrl}
                                                 alt={item.name}
                                                 sx={{ width: 60, height: 60, mr: 1 }}
                                             />
@@ -93,9 +96,12 @@ const CartDrawer = () => {
                                 sx={{ mt: 2 }}
                                 onClick={() => {
                                     // Tu peux naviguer vers /panier ici si tu veux
+                                    navigate(`/panier`);
+                                    setOpen(false);
                                 }}
                             >
                                 Voir le panier complet
+
                             </Button>
                         </>
                     )}

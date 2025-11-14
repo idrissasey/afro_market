@@ -61,10 +61,13 @@ const Accueil = () => {
 
                 // Vérifier si les données sont un tableau
                 if (Array.isArray(fetchedCategories)) {
-                    const formattedCategories = fetchedCategories.map(cat => ({
-                        id: cat.categoryId || cat.id,
-                        name: cat.name
-                    }));
+                    const formattedCategories = fetchedCategories
+                        // Exclure la catégorie "Connexion" qui est destinée à la connexion utilisateur
+                        .filter(cat => (cat.categoryId || cat.id) !== "Connexion")
+                        .map(cat => ({
+                            id: cat.categoryId || cat.id,
+                            name: cat.name
+                        }));
                     console.log(formattedCategories);
                     setCategories(formattedCategories);
                 } else {
@@ -76,6 +79,7 @@ const Accueil = () => {
         };
 
         fetchCategories();
+
         setSelectedTab(null); // Afficher toutes les catégories
     }, []);
 
@@ -85,6 +89,7 @@ const Accueil = () => {
     };
 
     const handleViewAll = (catId) => {
+        console.log("Navigating to category: " + catId);
         navigate(`/${catId}`);
     };
 
@@ -92,6 +97,7 @@ const Accueil = () => {
         <>
             <Container maxWidth="lg" sx={{ py: 6 }}>
                 {categories.map ((cat) => (
+
 
                     <Box key={cat.id} sx={{ mb: 5 }}>
                         <Typography variant="h5" gutterBottom>
@@ -113,9 +119,12 @@ const Accueil = () => {
                                             <CardMedia
                                                 component="img"
                                                 height="192"
-                                                image={product.image}
+                                                image={product.imageUrl.startsWith('http')
+                                                    ? product.imageUrl
+                                                    : process.env.PUBLIC_URL + '/' + product.imageUrl}
                                                 alt={product.name}
                                                 sx={{ borderTopLeftRadius: 4, borderTopRightRadius: 4 }}
+                                                onError={e => { e.target.onerror = null; e.target.src = process.env.PUBLIC_URL + '/images/banner.png'  ; }}
                                             />
                                             <CardContent>
                                                 <Typography variant="h6">{product.name}</Typography>

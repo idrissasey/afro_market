@@ -23,10 +23,10 @@ export default function Footer() {
                 {/* Section Infos */}
                 <Grid item xs={12} sm={6} md={3}>
                     <Typography variant="h6" gutterBottom>
-                        AfriMarket
+                        IDIA-MARKET
                     </Typography>
                     <Typography variant="body2">
-                        Votre marketplace de confiance pour l'Afrique.
+                        Votre Afro Market marketplace de confiance pour l'Afrique.
                     </Typography>
                 </Grid>
 
